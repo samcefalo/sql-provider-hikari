@@ -15,7 +15,7 @@ Database database = Provider.getInstance().submitSqlLite(path); //
 Database database = Provider.getInstance().submitMySql(host, url, user, password);
 ```
 
-## Hikari
+## HikariCP
 
 ```java
 Database database = Provider.getInstance().submitHikari(host, url, user, password);
