@@ -48,6 +48,15 @@ Database#update(new TableQuery()
                 .from("users"));
 ```
 
+# Delete Data
+
+```java
+        database.querySync(new Query()
+                .delete()
+                .from("users")
+                .where("id", 1);
+```
+
 And others examples you may get on `QueriesTest.java` file, on test folder.
 
 # How to install
