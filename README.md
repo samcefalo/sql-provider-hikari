@@ -15,7 +15,7 @@ Database database = Provider.getInstance().submitSqlLite(path); //
 Database database = Provider.getInstance().submitMySql(host, url, user, password);
 ```
 
-## Hikari
+## HikariCP
 
 ```java
 Database database = Provider.getInstance().submitHikari(host, url, user, password);
@@ -32,6 +32,20 @@ Database#update(new TableQuery()
               .size(8)
               .autoIncrement())
       .primary("id"));
+```
+
+# Insert Data
+
+```java
+        database.updateSync(new Query().insert("users", 1, "eike"));
+```
+
+# Get Data
+
+```java
+        List<Object> data = database.querySync(new Query()
+                .select("id", "name")
+                .from("users"));
 ```
 
 And others examples you may get on `QueriesTest.java` file, on test folder.
