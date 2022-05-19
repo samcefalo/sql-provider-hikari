@@ -3,14 +3,22 @@ A easy way to use SQL on Java. Create new connections and easy queries.
 
 # Creating database-connections
 
+## SqlLite
+
 ```java
-Database database = Provider.getInstance().submit(url, user, password); // Or Provider.getInstance().submit(url)
+Database database = Provider.getInstance().submitSqlLite(path); //
 ```
 
-# Creating database-connections with Hikari
+## MySql
 
 ```java
-TODO
+Database database = Provider.getInstance().submitMySql(url, user, password);
+```
+
+## Hikari
+
+```java
+Database database = Provider.getInstance().submitHikari(url, user, password);
 ```
 
 # Creating tables
