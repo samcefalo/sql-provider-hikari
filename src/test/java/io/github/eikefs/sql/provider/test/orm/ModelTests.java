@@ -25,7 +25,7 @@ public final class ModelTests extends TestCase {
         final Database databaseMock = mock(Database.class);
         final Model model = new User();
 
-        when(databaseMock.update(any(Query.class))).thenReturn(runAsync(doNothing()));
+        when(databaseMock.update(any(Query.class))).thenReturn(runAsync(doAnyThing()));
 
         final Map<String, Object> fakeData = new HashMap<>();
         fakeData.put("name", "New name");
@@ -40,16 +40,16 @@ public final class ModelTests extends TestCase {
         final Database databaseMock = mock(Database.class);
         final Model model = new User();
 
-        when(databaseMock.update(any(Query.class))).thenReturn(runAsync(doNothing()));
+        when(databaseMock.update(any(Query.class))).thenReturn(runAsync(doAnyThing()));
 
         model.delete(databaseMock);
 
         verify(databaseMock, times(1)).update(any(Query.class));
     }
 
-    private static Runnable doNothing() {
+    private static Runnable doAnyThing() {
         return () -> {
-            // do nothing
+            System.out.println("completed");
         };
     }
 
