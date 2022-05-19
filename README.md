@@ -12,13 +12,13 @@ Database database = Provider.getInstance().submitSqlLite(path); //
 ## MySql
 
 ```java
-Database database = Provider.getInstance().submitMySql(url, user, password);
+Database database = Provider.getInstance().submitMySql(host, url, user, password);
 ```
 
 ## Hikari
 
 ```java
-Database database = Provider.getInstance().submitHikari(url, user, password);
+Database database = Provider.getInstance().submitHikari(host, url, user, password);
 ```
 
 # Creating tables
