@@ -54,7 +54,7 @@ Database#update(new TableQuery()
         database.querySync(new Query()
                 .delete()
                 .from("users")
-                .where("id", 1);
+                .where("id", 1));
 ```
 
 And others examples you may get on `QueriesTest.java` file, on test folder.
