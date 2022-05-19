@@ -34,6 +34,20 @@ Database#update(new TableQuery()
       .primary("id"));
 ```
 
+# Insert Data
+
+```java
+        database.updateSync(new Query().insert("users", 1, "eike"));
+```
+
+# Get Data
+
+```java
+        List<Object> data = database.querySync(new Query()
+                .select("id", "name")
+                .from("users"));
+```
+
 And others examples you may get on `QueriesTest.java` file, on test folder.
 
 # How to install
