@@ -1,5 +1,6 @@
 package io.github.eikefs.sql.provider.query;
 
+import io.github.eikefs.sql.provider.orm.ORM;
 import io.github.eikefs.sql.provider.query.type.OrderType;
 import io.github.eikefs.sql.provider.query.type.WhereType;
 
@@ -41,9 +42,9 @@ public class Query {
     }
 
     public Query selectAll() {
-       stringBuilder.append("select * from");
+        stringBuilder.append("select * from");
 
-       return this;
+        return this;
     }
 
     public Query from(String table) {
@@ -135,6 +136,37 @@ public class Query {
         return this;
     }
 
+    public Query onDuplicateUpdate() {
+        stringBuilder
+                .append(" ")
+                .append("on duplicate key update")
+                .append(" ");
+
+        return this;
+    }
+
+    public Query value(String column, Object value) {
+        stringBuilder
+                .append(column + "= '" + value + "'");
+
+        return this;
+    }
+
+    public Query comma() {
+        stringBuilder
+                .append(",")
+                .append(" ");
+
+        return this;
+    }
+
+    public Query end() {
+        stringBuilder
+                .append(";");
+
+        return this;
+    }
+
     public Query limit(int limit) {
         stringBuilder
                 .append("limit")
@@ -154,16 +186,10 @@ public class Query {
         return this;
     }
 
-    public Query delete(String... sets) {
-        stringBuilder.append("delete ");
-
-        for (int index = 0; index < sets.length; index++) {
-            String set = "`" + sets[index] + "`";
-
-            if (index + 1 < sets.length) set += ", ";
-
-            stringBuilder.append(set);
-        }
+    public Query delete() {
+        stringBuilder
+                .append("delete ")
+                .append("from ");
 
         return this;
     }

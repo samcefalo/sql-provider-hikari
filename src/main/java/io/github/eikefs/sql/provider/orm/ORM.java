@@ -1,11 +1,17 @@
 package io.github.eikefs.sql.provider.orm;
 
+import io.github.eikefs.sql.provider.database.Database;
 import io.github.eikefs.sql.provider.orm.annotations.Field;
 import io.github.eikefs.sql.provider.orm.annotations.Table;
 
+import javax.xml.crypto.Data;
 import java.util.Arrays;
 
 public class ORM {
+
+    public static void create(Database database, Class<?> tableClass){
+        database.updateSync(create(tableClass));
+    }
 
     public static String create(Class<?> tableClass) {
         StringBuilder sb = new StringBuilder();
