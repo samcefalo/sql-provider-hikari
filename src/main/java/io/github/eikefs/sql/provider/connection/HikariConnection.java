@@ -17,12 +17,12 @@ public class HikariConnection implements Connection {
 
     @Override
     public String driverClass() {
-        return "";
+        return "com.mysql.jdbc.Driver";
     }
 
     @Override
     public String url() {
-        return "";
+        return "jdbc:mysql://" + host + "/" + database;
     }
 
     @Override
@@ -33,12 +33,13 @@ public class HikariConnection implements Connection {
 
     private HikariDataSource generateHikariDataSource() {
         HikariDataSource hikari = new HikariDataSource();
-        hikari.setDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
-        hikari.addDataSourceProperty("serverName", this.host);
-        hikari.addDataSourceProperty("databaseName", this.database);
+        hikari.setJdbcUrl(url());
         hikari.addDataSourceProperty("user", this.user);
         hikari.addDataSourceProperty("password", this.password);
-        hikari.addDataSourceProperty("useSSL", false);
+        //hikari.addDataSourceProperty("useSSL", false);
+        hikari.addDataSourceProperty("cachePrepStmts", "true");
+        hikari.addDataSourceProperty("prepStmtCacheSize", "250");
+        hikari.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
         return hikari;
     }
 
