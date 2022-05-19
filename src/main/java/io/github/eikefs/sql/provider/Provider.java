@@ -1,13 +1,15 @@
 package io.github.eikefs.sql.provider;
 
+import io.github.eikefs.sql.provider.connection.Connection;
+import io.github.eikefs.sql.provider.connection.HikariConnection;
+import io.github.eikefs.sql.provider.connection.MySqlConnection;
+import io.github.eikefs.sql.provider.connection.SqlLiteConnection;
 import io.github.eikefs.sql.provider.database.Database;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
 
 public class Provider {
 
-    private Provider() {}
+    private Provider() {
+    }
 
     private static final Provider instance = new Provider();
 
@@ -15,40 +17,28 @@ public class Provider {
         return instance;
     }
 
-    private Connection newConnection(String url) {
+    private java.sql.Connection newConnection(Connection connection) {
         try {
-            Class.forName("org.sqlite.JDBC");
-
-            url = url.startsWith("jdbc:sqlite:") ? url : "jdbc:sqlite:" + url;
-
-            return DriverManager.getConnection(url);
+            return connection.connect();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
-    private Connection newConnection(String url, String user, String pass) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            url = url.startsWith("jdbc:mysql://") ? "jdbc:mysql://" + url : url;
-
-            return DriverManager.getConnection(url, user, pass);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public Database submitSqlLite(String path) {
+        SqlLiteConnection sqlLiteConnection = new SqlLiteConnection(path);
+        return new Database(newConnection(sqlLiteConnection));
     }
 
-    public Database submit(String url) {
-        return new Database(newConnection(url));
+    public Database submitMySql(String host, String database, String user, String pass) {
+        MySqlConnection mySqlConnection = new MySqlConnection(host, database, user, pass);
+        return new Database(newConnection(mySqlConnection));
     }
 
-    public Database submit(String url, String user, String pass) {
-        return new Database(newConnection(url, user, pass));
+    public Database submitHikari(String host, String database, String user, String pass) {
+        HikariConnection hikariConnection = new HikariConnection(host, database, user, pass);
+        return new Database(newConnection(hikariConnection));
     }
 
 }
