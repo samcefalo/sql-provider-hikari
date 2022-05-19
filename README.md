@@ -7,6 +7,12 @@ A easy way to use SQL on Java. Create new connections and easy queries.
 Database database = Provider.getInstance().submit(url, user, password); // Or Provider.getInstance().submit(url)
 ```
 
+# Creating database-connections with Hikari
+
+```java
+TODO
+```
+
 # Creating tables
 
 ```java
