@@ -20,13 +20,17 @@ public class MainTest {
         initDatabase();
         tableConfigure();
         userCRUD = new UserCRUD(database);
-        userCRUD.insert(new User(5, "Doria"));
+        userCRUD.insert(new User(6, "Doria"));
         userCRUD.update(new User(1, "fodase"));
-        System.out.println(userCRUD.get(1).getName());
+        try {
+            System.out.println(userCRUD.get(1).getName());
+        } catch (Exception e) {
+
+        }
         userCRUD.delete(new User(2, ""));
     }
 
-    private static void initDatabase(){
+    private static void initDatabase() {
         database = Provider.getInstance().submitMySql("localhost:3306", "test", "root", "");
     }
 

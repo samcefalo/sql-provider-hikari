@@ -7,6 +7,9 @@ import io.github.eikefs.sql.provider.orm.annotations.Field;
 import io.github.eikefs.sql.provider.orm.annotations.Table;
 import io.github.eikefs.sql.provider.query.Query;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 public class UserCRUD implements CRUD<User, Integer> {
 
     private Database database;
@@ -42,11 +45,11 @@ public class UserCRUD implements CRUD<User, Integer> {
     }
 
     @Override
-    public User get(Integer id) {
-        return database.buildSync(User.class, new Query()
+    public User get(Integer id) throws ExecutionException, InterruptedException {
+        return database.build(User.class, new Query()
                 .selectAll()
                 .from("user")
                 .where("id", id)
-                .raw());
+                .raw()).get();
     }
 }
