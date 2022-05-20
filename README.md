@@ -6,7 +6,7 @@ A easy way to use SQL on Java. Create new connections and easy queries.
 ## SqlLite
 
 ```java
-Database database = Provider.getInstance().submitSqlLite(path); //
+Database database = Provider.getInstance().submitSqlLite(path);
 ```
 
 ## MySql
