@@ -1,4 +1,4 @@
-# sql-provider
+# sql-provider-hikari
 A easy way to use SQL on Java. Create new connections and easy queries.
 
 # Creating database-connections
