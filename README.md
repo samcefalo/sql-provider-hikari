@@ -59,20 +59,4 @@ Database#update(new TableQuery()
 
 And others examples you may get on `QueriesTest.java` file, on test folder.
 
-# How to install
-
-```xml
-<repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-</repository>
-```
-
-```xml
-<dependency>
-      <groupId>com.github.eikefs</groupId>
-      <artifactId>sql-provider</artifactId>
-      <version>1.0.1</version>
-</dependency>
-```
 
